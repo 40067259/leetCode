@@ -1,0 +1,44 @@
+Description: make a traversal throgh a int array, find the 3 elements which sum is 0. No contain duplicate triplets.
+Given array nums = [-1, 0, 1, 2, -1, -4],
+
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+
+Analysis:
+1.The first thought of it is brutal search.
+  The time complexity is O(n^3), it is inefficient. Also,It can't resolve the duplicate problems.
+2.To to reduce the duplicate triplets, we can sort this array and skip the repeated element to avoid duplicate.
+3.Once we sorted the array, it has a special property: left side is negetive, right side is positive. And more left, it is
+  smaller, more right bigger. [-6,-4,-2,-2,-1,0,2,3,5,7,8] as example, if the first 2 elements add first, then we find the most left
+  one, if is a negetive, obviously, no need more try. we put the second position+1 to try. Likewise, we put the right element positon-1 
+  to try again.
+  4.How to avoid duplicate? when we update we check the previous one, if nums[i]==nums[i-1] skip;
+  
+  Code:
+  List<List<Integer>> res=new LinkedList<>();// store the list( 3 elements==0)
+  Arrays.sort(nums);// sort from small to big
+  for(int i=0;i<nums.length-2;i++)// find the first element, the next 2 we will search from i+1 to the end
+  {
+   if(nums[i]>0) break;// the smallest one is positive, impossible to sum positive to zero;
+   if(i==0||(i>0&&num[i]!=num[i-1])//we start from 0. if the next element equals now, it skips antomatically.
+   {
+    int lo=i+1;//search from the neighnour of i
+    int hi=nums.length;// to the end
+    int sum=-nums[i];// to compare with nums[lo]+nums[hi] and nums[i]
+    if(nums[i]+nums[lo]+nums[hi]==0)// first situation
+    {
+     res.add(Arrays.asList(nums[i],nums[lo],nums[hi]))// store the result
+     while(lo<hi&&nums[lo]==nums[lo+1]) lo++//void second element duplicate
+     while(lo<hi&&nums[hi-1]==nums[hi] hi--//lo<hi to keep three elements in proper order, otherwise overflow and wrong result
+     lo++;hi--  //the operations above just ensure the next element is different, but not update them 
+    }
+    else if(nums[lo]+nums[hi]<sum)//second situation
+    lo++;                        // change a larger second number to try
+   }
+   else hi--                   //means too bigger than 0, change a samller one to try
+  }
+  
+  return res        // return the result
