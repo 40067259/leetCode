@@ -1,0 +1,32 @@
+Convert an Array to a balanced tree.
+First sort the array in increasing order.[-10,-6,-4,0,3,8,13]
+Find the middle element of the array and creat it as root.
+Obviously,the left side is root.left, other side is root.right.
+Repeat the process untile one element left.
+
+Java Implementation:
+TreeNode formTree(int [] nums)
+{
+ if(nums.length==0) return null;
+ int mid=(nums.length-1)/2;
+ TreeNode root =new TreeNode(nums[mid]);
+ root.left=helper(nums,0,mid-1,root);
+ root.right=helper(nums,mid+1,nums.length-1,root)
+ return root;
+}
+
+TreeNode helper(int[]nums,int start,int end, TreeNode root)
+{
+ if(start<end)
+ {
+  int mid=(start+end)/2;
+  TreeNode cur=new TreeNode(nums[mid]);
+  cur.left=helper(nums,start,mid-1,cur);
+  cur.right=helper(nums,mid+1,end,cur);
+  return cur;
+ }
+ if(start==end)
+ return new TreeNode(nums[start]);
+ else
+ return null;
+ }
