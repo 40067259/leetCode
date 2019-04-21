@@ -18,4 +18,4 @@ DFS-Visite(G,v)
 
 u.color=black
 time=time+1
-u.d=time;
+u.f=time;
