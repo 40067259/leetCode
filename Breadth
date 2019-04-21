@@ -12,6 +12,7 @@ Enqueue(Q,s)
 while(Q!=empty)
 u=Dequeue(Q)
 foreach v from E.Adj(u)
+if v.color=white
 v.color=gray
 v.d=u.d+1
 v.Π=u
