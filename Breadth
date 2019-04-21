@@ -1,0 +1,19 @@
+for each vertex u from G.V-{s}
+u.color=white
+u.d=infinite.
+u.Π=Nil
+
+s.color=gray
+s.d=0
+s.Π=Nil
+
+Q=0
+Enqueue(Q,s)
+while(Q!=empty)
+u=Dequeue(Q)
+foreach v from E.Adj(u)
+v.color=gray
+v.d=u.d+1
+v.Π=u
+Enqueue(Q,v)
+u.color=black
