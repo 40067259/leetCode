@@ -1,0 +1,21 @@
+for each vertex u from G.V
+u.color=white
+u.Π=NIL
+u.time=0
+
+for each vertex u from G.V //explore each vertex and its adj until no adjs are visited
+if u.color=white
+DFS-Visite(G.u)
+
+DFS-Visite(G.u)
+time=time+1
+u.d=time
+u.color=gray
+foreach v is G.Adj(u)
+if v.color=white
+v.Π=u;
+DFS-Visite(G,v)
+
+u.color=black
+time=time+1
+u.d=time;
