@@ -1,0 +1,67 @@
+public void quickSort(Queue<K> S, Comparator<K> comp)
+{
+ int n=S.length();
+ if(n<2) return;
+ K pivot=S.peek()
+ Queue<K> L=new LinkedList<>();
+ Queue<K> E=new LinkedList<>();
+ Queue<K> G=new LinkedList<>();
+ while(!S.isempty())
+ {
+  K element=S.remove();
+  int c=comp(pivot,element);
+  if(c==0)
+  E.add(element);
+  if(c<0)
+  G.add(element);
+  if(c>0)
+  L.add(element);
+ }
+ quickSort(L,comp);
+ quickSort(G,comp);
+ while(!L.isempty())
+ S.add(L.poll());
+ while(!E.isempty())
+ S.add(E.poll());
+ while(!G.isempty())
+ S.add(G.poll());
+ }
+ 
+ Method 2:///////////////////////////////////////////////
+ public static void swap(int arr[],int i,int j)
+ {
+  int temp=arr[i];
+  arr[i]=arr[j];
+  arr[j]=temp;
+ }
+ 
+ public int partition(int arr[],int right,int left)
+ {
+  int i= left; int j=right;
+  int pivot=arr[left];
+  while(i<j)
+  {
+   while(i<j&&arr[i]<pivot)//if see pivot, stop and exchange if it is possible
+    i++;
+    while(i<j&&arr[j]>=pivot)//if see pivot, keep it in the right side
+    j--;
+    if(i<j)
+    {
+    swap(arr,i,j);
+    continue;
+    }
+    else break;//finally,j<=i. from left to j, all element less than pivot. Contrarily, right side is equal or bigger than pivot
+    }
+    return j;
+    }
+    
+    public static void quickSort(int []arr,int left,int right)
+    {
+     if(left<right)//keep the two sides elements strictly
+     {
+     int partPosition=partition(arr,left,right)
+     quickSort(arr,left,partition);
+     quickSort(arr,partition+1,right);
+     }
+     }
+      
