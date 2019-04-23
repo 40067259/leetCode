@@ -1,0 +1,23 @@
+public static void merge(K[] S, K[]S1,K[]S2,Comparator<K> comp)
+{
+ int j=0; int i=0;
+ while(i+j<S.length)
+ {
+  if(j=S2.length-1||comp(S1[i],S2[j])<0)
+  S[j+i]=S1[i++];
+  else
+  S[i+j]=S2[j++];
+ }
+}
+
+public static void mergeSort(K[] S, Comparator<K> comp)
+{
+ int n=S.length();
+ if(n<2) return;
+ int center=n/2;
+ K[] S1=Arrays.copyOfRange(S,0,center);
+ K[]S2=Arrays.copyOfRange(S,center,n);
+ mergeSort(S1,comp);
+ mergeSort(S2,comp);
+ merge(S,S1,S2,comp);
+ }
