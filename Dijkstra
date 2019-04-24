@@ -1,4 +1,4 @@
-public void dijkstra(int p)
+public void dijkstra(int p,int[][]a)
 {
 int [] d= new int [n];
 Set<Integer> set=new HashSet<>();
