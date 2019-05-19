@@ -1,0 +1,25 @@
+if a node and its children contains no 1, then remove it.
+
+Key point: simplyfy the condition, DFS
+
+public TreeNode remove(TreeNode root)
+{
+ helper(root);
+ return root;
+ }
+
+public void helper(TreeNode root)
+{
+if(!check(root.left)) root.left=null;
+if(!check(root.right)) root.right=null;
+helper(root.left);
+heleper(root.right);
+}
+
+public boolean check(TreeNode root)
+{
+if(root==null) return false;
+if(root.val==1) return true;// if value not 1 and has child, go to recursion.
+
+return check(root.left)||check(root.right);
+}
