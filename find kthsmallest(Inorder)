@@ -1,0 +1,28 @@
+Find the kth smallest element;
+It is a typical Inorder travesal problem.
+That explains how to viste the nodes in particular order.
+
+int answer,solution;
+
+public int KthSmallest(TreeNode root, int k)
+{
+ answer=0;solution=0;
+ Find(root,k);
+ return solution;
+ }
+
+
+public void Find(TreeNode root, int k)
+{
+ if(root==null) return;
+ Find(root.left, k);  // first visit left
+ 
+ update++;
+ if(update==k) 
+ {
+  solution=root.val;// come back to root
+  return;
+  }
+  
+  Find(root.right, k);// last visit right
+  }
