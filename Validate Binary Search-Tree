@@ -1,0 +1,13 @@
+public boolean validBST(TreeNode root)
+{
+ if(root==null) return true;
+ Integer valid=null;
+ if(validBST(root.left))// get the mostleft node
+ {
+  if(valid==null||root.val>valid)//compare root value with its left root
+  valid=root.val;
+  else return false;
+  return validBST(root.right);// go to right child and compare the right value with root value 
+  }
+  else return false;
+  }
