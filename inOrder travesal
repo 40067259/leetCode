@@ -1,0 +1,19 @@
+public List<Integer> inorderTravesal(TreeNode root)
+{
+ List<Integer> list=new ArrayList<>();
+ helper(root,list);
+ return list;
+ }
+ 
+ public void helper(TreeNode root, List<Integer> list)
+ {
+  if(root==null) return;
+  
+  if(root.left!=null)
+  helper(root,list);//   leftchild
+  
+  list.add(root.val);//  node
+  
+  if(root.right!=null)
+  helper(root.right,list);// rightchild
+  }
