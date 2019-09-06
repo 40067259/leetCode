@@ -1,0 +1,27 @@
+public class Permutation {
+	
+	  public static void swap(int[]intArray,int a,int b)
+	  {
+		 int temp= intArray[a-1];
+		 intArray[a-1]=intArray[b-1];
+		 intArray[b-1]=temp;
+	  }
+	  public static void perm(int[]numbers,int start, int end)
+	  {
+		  if(start==end)
+		  {
+			  System.out.println(Arrays.toString(numbers));
+			  return;
+		  }
+		  else
+		
+			  for(int i=start;i<=end;i++)
+			  {
+				 swap(numbers,start,i);
+				 perm(numbers,start+1,end);
+				 swap(numbers,i,start);
+			  }
+		
+	  }
+
+}
